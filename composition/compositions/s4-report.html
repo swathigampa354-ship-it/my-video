@@ -1,0 +1,199 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Figtree";
+      font-style: normal;
+      font-weight: 300 900;
+      src: url("assets/fonts/Figtree.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Instrument Serif";
+      font-style: normal;
+      font-weight: 400;
+      src: url("assets/fonts/InstrumentSerif.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      background: #faf8f5;
+      overflow: hidden;
+      font-family: var(--font-display, "Figtree"), sans-serif;
+    }
+    #s4-stage {
+      position: absolute;
+      inset: 0;
+    }
+    #s4-q {
+      position: absolute;
+      left: 50%;
+      top: 15%;
+      transform: translateX(-50%);
+      font-family: var(--font-serif, "Instrument Serif"), serif;
+      font-style: italic;
+      font-size: 74px;
+      color: #0a0a0a;
+      white-space: nowrap;
+    }
+    #s4-cards {
+      position: absolute;
+      left: 50%;
+      top: 55%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      gap: 44px;
+    }
+    .s4-card {
+      width: 430px;
+      background: #ffffff;
+      border: 2px solid #0a0a0a;
+      border-radius: 20px;
+      padding: 40px 38px 34px;
+      box-shadow: 9px 10px 0 rgba(10, 10, 10, 0.92);
+    }
+    .s4-label {
+      font-size: 24px;
+      font-weight: 600;
+      color: #71717a;
+      margin-bottom: 12px;
+    }
+    .s4-num {
+      font-size: 92px;
+      font-weight: 800;
+      color: #5b21b6;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 20px;
+      font-variant-numeric: tabular-nums;
+    }
+    .s4-delta {
+      display: inline-block;
+      background: #fde047;
+      color: #0a0a0a;
+      font-size: 23px;
+      font-weight: 800;
+      padding: 8px 16px;
+      border-radius: 999px;
+    }
+    #s4-foot {
+      position: absolute;
+      left: 50%;
+      bottom: 11%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 27px;
+      font-weight: 700;
+      color: #0a0a0a;
+    }
+    #s4-foot-dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 4px;
+      background: #7c3aed;
+      flex: none;
+    }
+  </style>
+  <div id="root" data-composition-id="s4" data-width="1920" data-height="1080">
+    <div id="s4-stage">
+      <div id="s4-q" class="clip" data-start="0.15" data-duration="4.3" data-track-index="2">
+        <span id="s4-q-in">How did last week's posts do?</span>
+      </div>
+      <div id="s4-cards">
+        <div class="s4-card clip" id="s4-card-1" data-start="0.73" data-duration="3.75" data-track-index="3">
+          <div id="s4-card-1-in">
+            <div class="s4-label">Reach</div>
+            <div class="s4-num" id="s4-num-1">0</div>
+            <span class="s4-delta">+18%</span>
+          </div>
+        </div>
+        <div class="s4-card clip" id="s4-card-2" data-start="1.82" data-duration="2.66" data-track-index="4">
+          <div id="s4-card-2-in">
+            <div class="s4-label">Engagement</div>
+            <div class="s4-num" id="s4-num-2">0</div>
+            <span class="s4-delta">+2.3pt</span>
+          </div>
+        </div>
+        <div class="s4-card clip" id="s4-card-3" data-start="2.91" data-duration="1.57" data-track-index="5">
+          <div id="s4-card-3-in">
+            <div class="s4-label">New followers</div>
+            <div class="s4-num" id="s4-num-3">0</div>
+            <span class="s4-delta">+9%</span>
+          </div>
+        </div>
+      </div>
+      <div id="s4-foot" class="clip" data-start="3.0" data-duration="1.28" data-track-index="6">
+        <span id="s4-foot-dot"></span>
+        <span id="s4-foot-in">Best day Saturday · 11:30</span>
+      </div>
+    </div>
+  </div>
+  <audio id="s4-card-sound-1" class="clip" data-hf-media-start-basis="local" data-start="0.73" data-duration="0.3" data-track-index="11" data-volume="0.6" src="assets/sfx/casino/chips-stack-1.ogg"></audio>
+  <audio id="s4-card-sound-2" class="clip" data-hf-media-start-basis="local" data-start="1.82" data-duration="0.3" data-track-index="11" data-volume="0.6" src="assets/sfx/casino/chips-stack-2.ogg"></audio>
+  <audio id="s4-card-sound-3" class="clip" data-hf-media-start-basis="local" data-start="2.91" data-duration="0.3" data-track-index="11" data-volume="0.6" src="assets/sfx/casino/chips-stack-3.ogg"></audio>
+  <audio id="s4-count-tick" class="clip" data-hf-media-start-basis="local" data-start="3.98" data-duration="0.15" data-track-index="12" data-volume="0.5" src="assets/sfx/ui/click2.ogg"></audio>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo(
+      "#s4-q-in",
+      { opacity: 0, filter: "blur(8px)" },
+      { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power3.out" },
+      0.15
+    );
+
+    // beat-grid: cards land on every-other-beat — 14.73 / 15.82 / 16.91 abs (local 0.73 / 1.82 / 2.91)
+    tl.fromTo(
+      "#s4-card-1-in",
+      { opacity: 0, scale: 0.86, filter: "blur(6px)" },
+      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.42, ease: "back.out(1.4)" },
+      0.73
+    );
+    tl.fromTo(
+      "#s4-card-2-in",
+      { opacity: 0, scale: 0.86, filter: "blur(6px)" },
+      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.42, ease: "back.out(1.4)" },
+      1.82
+    );
+    tl.fromTo(
+      "#s4-card-3-in",
+      { opacity: 0, scale: 0.86, filter: "blur(6px)" },
+      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.42, ease: "back.out(1.4)" },
+      2.91
+    );
+
+    // count-ups
+    const c1 = { n: 0 };
+    tl.to(c1, {
+      n: 24.5, duration: 0.9, ease: "power1.inOut",
+      onUpdate: () => { document.getElementById("s4-num-1").textContent = c1.n.toFixed(1) + "K"; },
+    }, 0.9);
+    const c2 = { n: 0 };
+    tl.to(c2, {
+      n: 6.1, duration: 0.8, ease: "power1.inOut",
+      onUpdate: () => { document.getElementById("s4-num-2").textContent = c2.n.toFixed(1) + "%"; },
+    }, 2.0);
+    const c3 = { n: 0 };
+    // beat-locked: 312 count-up ends at 18.00 abs (local 4.00, beat 0.77)
+    tl.to(c3, {
+      n: 312, duration: 0.94, ease: "power1.inOut",
+      onUpdate: () => { document.getElementById("s4-num-3").textContent = Math.round(c3.n).toString(); },
+    }, 3.06);
+
+    tl.fromTo(
+      "#s4-foot-in",
+      { opacity: 0, y: 12, filter: "blur(5px)" },
+      { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.3, ease: "power3.out" },
+      3.05
+    );
+
+    // exit: whip to dark
+    tl.to(
+      "#s4-stage",
+      { opacity: 0, scale: 0.97, filter: "blur(9px)", duration: 0.24, ease: "power3.in" },
+      4.26
+    );
+
+    window.__timelines["s4"] = tl;
+  </script>
+</template>

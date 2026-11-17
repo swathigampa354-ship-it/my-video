@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-composition-variables='[
+  {"id":"color-dark","type":"color","label":"Dark stage","default":"#0a0a0a"},
+  {"id":"color-paper","type":"color","label":"Paper","default":"#faf8f5"},
+  {"id":"color-ink","type":"color","label":"Ink","default":"#0a0a0a"},
+  {"id":"color-white","type":"color","label":"White","default":"#ffffff"},
+  {"id":"color-violet","type":"color","label":"Accent","default":"#7c3aed"},
+  {"id":"color-lav","type":"color","label":"Chip lavender","default":"#ede9fe"},
+  {"id":"color-violet-deep","type":"color","label":"Accent ink","default":"#5b21b6"},
+  {"id":"color-yellow","type":"color","label":"Highlight","default":"#fde047"},
+  {"id":"font-display","type":"string","label":"Display font","default":"Figtree"},
+  {"id":"font-serif","type":"string","label":"Serif accent","default":"Instrument Serif"}
+]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>TryPost — brag</title>
+  </head>
+  <body>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <div
+      id="main"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="22.5"
+      data-width="1920"
+      data-height="1080"
+      data-track-kind="graphics"
+      style="background:#0a0a0a"
+    >
+      <div
+        id="s1"
+        data-composition-id="s1"
+        data-composition-src="compositions/s1-prompt.html"
+        data-start="0"
+        data-duration="4.5"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="s2"
+        data-composition-id="s2"
+        data-composition-src="compositions/s2-agent.html"
+        data-start="4.5"
+        data-duration="4.5"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="s3"
+        data-composition-id="s3"
+        data-composition-src="compositions/s3-calendar.html"
+        data-start="9"
+        data-duration="5"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="s4"
+        data-composition-id="s4"
+        data-composition-src="compositions/s4-report.html"
+        data-start="14"
+        data-duration="4.5"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="s5"
+        data-composition-id="s5"
+        data-composition-src="compositions/s5-outro.html"
+        data-start="18.5"
+        data-duration="4"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <audio
+        id="bg-music"
+        class="clip"
+        data-start="0"
+        data-duration="22.5"
+        data-track-index="10"
+        data-volume="0.32"
+        data-fade-out="1.5"
+        data-timeline-role="music"
+        src="assets/music/happy-beats-business-moves-vol-10-by-ende-dot-app.mp3"
+      ></audio>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
